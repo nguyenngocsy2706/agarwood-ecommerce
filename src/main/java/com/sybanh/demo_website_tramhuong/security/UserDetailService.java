@@ -1,4 +1,4 @@
-package com.sybanh.security;
+package com.sybanh.demo_website_tramhuong.security;
 
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
