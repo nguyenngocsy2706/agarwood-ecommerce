@@ -74,6 +74,15 @@ public class GlobalException {
                 .build());
     }
 
+    @ExceptionHandler(OrderAlreadyPaidException.class)
+    public ResponseEntity<ErrorResponse> handlerOrderAlreadyPaid(OrderAlreadyPaidException e) {
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(ErrorResponse.builder()
+                .status(HttpStatus.CONFLICT.value())
+                .message(e.getMessage())
+                .timestamp(LocalDateTime.now())
+                .build());
+    }
+
     @ExceptionHandler(NoResourceFoundException.class)
     public ResponseEntity<ErrorResponse> handleNotFound(NoResourceFoundException e) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ErrorResponse.builder()
