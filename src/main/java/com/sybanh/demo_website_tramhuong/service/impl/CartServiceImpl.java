@@ -84,9 +84,11 @@ public class CartServiceImpl implements CartService {
                         throw new ResourceNotFoundException("Cart item not found: " + cartItemId);
                 }
 
-                if (cartItemRequest.getQuantity() != cartItem.getQuantity()) {
-                        cartItem.setQuantity(cartItemRequest.getQuantity());
+                if (cartItemRequest.getQuantity() > cartItem.getProduct().getProductQuantity()) {
+                        throw new InsufficientStockException(
+                                        "Not enough stock for product: " + cartItem.getProduct().getProductName());
                 }
+                cartItem.setQuantity(cartItemRequest.getQuantity());
 
                 cartItemRepository.save(cartItem);
 
